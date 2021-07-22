@@ -12,4 +12,4 @@ class charge:
         for i in range(x):
             for j in range(y):
                 for k in range(z):
-                    space[i][j][k] += 1 * self.charge
+                    space[i][j][k] += 1 * self.charge / distance(np.array([i,j,k]),self.position)
