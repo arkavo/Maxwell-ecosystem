@@ -8,8 +8,11 @@ from constants import*
 
 class E_field:
     def __init__(self,R):        
-        self = np.zeros([R],dtype=float)
+        self.content = np.zeros(R,dtype=float)
 
     def display_f(self):
-        sns.heatmap(self)
-        plt.show()
+        print(self.content)
+    
+    def hmap_f(self):
+        svm = sns.heatmap(self.content, annot=True, cmap='coolwarm',linecolor='white', linewidths=1)
+        svm.figure.savefig('svm_conf.png', dpi=400)
