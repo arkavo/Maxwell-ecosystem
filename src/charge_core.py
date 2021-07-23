@@ -8,8 +8,11 @@ class charge:
         self.velocity = v
     
     def add_field(self,space):
-        x,y,z = np.shape(space)
-        for i in range(x):
-            for j in range(y):
-                for k in range(z):
-                    space[i][j][k] += 1 * self.charge / distance(np.array([i,j,k]),self.position)
+        dim = space.order
+        if dim==2:
+            for i in range((space.shape)[0]):
+                for j in range((space.shape)[1]):
+                    if distance(np.array([i,j]),self.position)==0:
+                        (space.content)[i][j] += 0
+                    else:
+                        (space.content)[i][j] += 1 * self.charge / distance(np.array([i,j]),self.position)
