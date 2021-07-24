@@ -13,7 +13,7 @@ class vector3:
 def distance(a,b):
     s = max(np.shape(a)[0],np.shape(b)[0])
     dist2 = 0.0
-    for i in range(s):
+    for i in range(2):
         dist2 += (a[i] - b[i])**2
     
     return dist2**0.5
