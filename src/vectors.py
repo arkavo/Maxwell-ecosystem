@@ -33,14 +33,21 @@ def draw_line(st,en,tol = 0.6):
         x_ = np.arange(x0, x1, (x0-x1)/abs(x0-x1))
         y_ = np.full((abs(x1-x0)), y0)
 
-        path = np.array([x_,y_])
+        path = []
+        for i in range(abs(x1-x0)):
+            add = np.array([int(x_[i]), int(y_[i])])
+            path.append(add)
+        
         return path
     #case2 Line = vertical
     if x0==x1:
         y_ = np.arange(y0, y1, (y0-y1)/abs(y0-y1))
         x_ = np.full((abs(y1-y0)), x0)
 
-        path = np.array([x_,y_])
+        path = []
+        for i in range(abs(y1-y0)):
+            add = np.array([int(x_[i]), int(y_[i])])
+            path.append(add)
         return path
     
     else:

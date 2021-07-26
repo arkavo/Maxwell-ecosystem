@@ -32,4 +32,4 @@ class charge_line:
             r = self.path[i]
             q_c = charge(self.charge,r,self.velocity)
             q_c.add_field(space)
-            print(str(int(i/np.shape(self.path)[1]*100))+"% done",end="\r")
+            print(str(int(i/len(self.path)*100))+"% done",end="\r")

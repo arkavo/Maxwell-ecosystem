@@ -2,7 +2,7 @@ from E_field import*
 import numpy as np
 
 
-sp = [100,100]
+sp = [200,200]
 sample = E_field(sp)
 """
 r1 = [20,30]
@@ -39,7 +39,7 @@ l1.add_line_field(sample)
 l2.add_line_field(sample)
 
 sample.hmap_f()
-"""
+
 r1 = [20, 10]
 r2 = [10, 50]
 r3 = [11, 11]
@@ -56,5 +56,21 @@ l2.add_line_field(sample)
 l3.add_line_field(sample)
 l4.add_line_field(sample)
 l5.add_line_field(sample)
+"""
+for i in range(10):
+    p1 = [i*10+5,195-i*10]
+    p2 = [195-i*10,i*10+5]
+    p3 = [i*10+5,i*10+5]
+    p4 = [195-i*10, 195-i*10]
+    l1 = charge_line(10*(i%2-0.5),p3,p1)
+    l2 = charge_line(10*(i%2-0.5),p3,p2)
+    l3 = charge_line(10*(i%2-0.5),p2,p4)
+    l4 = charge_line(10*(i%2-0.5),p4,p1)
+    l1.add_line_field(sample)
+    l2.add_line_field(sample)
+    l3.add_line_field(sample)
+    l4.add_line_field(sample)
+
+
 #print(d)
 sample.hmap_f()
