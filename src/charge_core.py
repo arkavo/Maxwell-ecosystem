@@ -18,23 +18,18 @@ class charge:
                         (space.content)[i][j] += 1 * self.charge / distance(np.array([i,j]),self.position)
 
 class charge_line:
-    def __init__(self,Q,st,en,V=0,T=0,tol=0.5):
+    def __init__(self,Q,st,en,V=0,T=0):
         self.charge = Q
         self.st_pt = st
         self.en_pt = en
         self.velocity = V
         self.rotate = T
-        dims = np.shape(st)[0]
-        x_ = np.arange(st[0], en[0], abs(en[0]-st[0])/(en[0]-st[0]))
-        y_ = np.arange(st[1], en[1], abs(en[1]-st[1])/(en[1]-st[1]))
-        self.path = np.array((len(x_),len(y_)))
-        for i in range(len(x_)):
-            if i*(en[1]-st[1])/(en[0]-st[0])-int(i*(en[1]-st[1])/(en[0]-st[0])) < tol:
-                self.path[i] = ([x_[i], y_[0]+int(i*(en[1]-st[1])/(en[0]-st[0]))])
+        self.path = draw_line(st,en)
+
 
     def add_line_field(self,space):
-        for i in range(np.shape(self.path)[1]):
-            r = np.array([self.path[0][i],self.path[1][i]])
+        for i in range(len(self.path)):
+            r = self.path[i]
             q_c = charge(self.charge,r,self.velocity)
             q_c.add_field(space)
             print(str(int(i/np.shape(self.path)[1]*100))+"% done",end="\r")
