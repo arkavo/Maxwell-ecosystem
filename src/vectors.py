@@ -30,7 +30,7 @@ def draw_line(st,en,tol = 0.6):
         return st
     #case1 Line = horizontal
     if y0==y1:
-        x_ = np.arange(x0, x1, (x0-x1)/abs(x0-x1))
+        x_ = np.arange(x0, x1, (x1-x0)/abs(x0-x1))
         y_ = np.full((abs(x1-x0)), y0)
 
         path = []
@@ -41,7 +41,7 @@ def draw_line(st,en,tol = 0.6):
         return path
     #case2 Line = vertical
     if x0==x1:
-        y_ = np.arange(y0, y1, (y0-y1)/abs(y0-y1))
+        y_ = np.arange(y0, y1, (y1-y0)/abs(y0-y1))
         x_ = np.full((abs(y1-y0)), x0)
 
         path = []
