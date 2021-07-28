@@ -2,7 +2,7 @@ from E_field import*
 import numpy as np
 
 
-sp = [200,200]
+sp = [50,50]
 sample = E_field(sp)
 """
 r1 = [20,30]
@@ -56,12 +56,12 @@ l2.add_line_field(sample)
 l3.add_line_field(sample)
 l4.add_line_field(sample)
 l5.add_line_field(sample)
-"""
-for i in range(10):
-    p1 = [i*10+5,195-i*10]
-    p2 = [195-i*10,i*10+5]
+
+for i in range(2):
+    p1 = [i*10+5,45-i*10]
+    p2 = [45-i*10,i*10+5]
     p3 = [i*10+5,i*10+5]
-    p4 = [195-i*10, 195-i*10]
+    p4 = [45-i*10, 45-i*10]
     l1 = charge_line(10*(i%2-0.5),p3,p1)
     l2 = charge_line(10*(i%2-0.5),p3,p2)
     l3 = charge_line(10*(i%2-0.5),p2,p4)
@@ -70,7 +70,11 @@ for i in range(10):
     l2.add_line_field(sample)
     l3.add_line_field(sample)
     l4.add_line_field(sample)
-
-
+"""
+p = [25,25]
+r = [20]
+for i in r:
+    c1 = charge_circle(30*i,p,i)
+    c1.add_circle_field(sample)
 #print(d)
 sample.hmap_f()

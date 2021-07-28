@@ -65,6 +65,23 @@ def draw_line(st,en,tol = 0.6):
         
         return path
 
-    
 
-    
+def draw_circle(pt, rad,tol=1, en=1,st=0):
+    if rad==0:
+        return pt
+
+    else:
+        x0 = pt[0]
+        y0 = pt[1]
+
+        start = 2* np.pi * st
+        end = 2 * np.pi * en
+        path = []
+        trace = np.linspace(start,end,int((en-st)*180))
+        for i in trace:
+            x_ = x0 + rad * math.cos(i)
+            y_ = y0 + rad * math.sin(i)
+            if abs(x_ - int(x_)) <= tol and abs(y_ - int(y_)) <= tol:
+                add = np.array([int(x_), int(y_)])
+                path.append(add)
+        return path
