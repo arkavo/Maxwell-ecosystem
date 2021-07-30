@@ -74,8 +74,8 @@ for i in range(2):
 p = [25,25]
 r = [10]
 #r = [10,20,30,40,50,60,70,80,90,100]
-for i in r:
-    c1 = charge_circle(30*i,p,i)
+for i in range(4):
+    c1 = charge_circle(30*i,p,2+i*4,st_=0.1*i,en_=0.5+0.1*i)
     c1.add_circle_field(sample)
     print(i/100,end="\r")
 #print(d)
