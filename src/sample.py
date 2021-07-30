@@ -1,6 +1,6 @@
 from E_field import*
 import numpy as np
-
+import multiprocessing as mp
 
 sp = [50,50]
 sample = E_field(sp)
@@ -72,9 +72,11 @@ for i in range(2):
     l4.add_line_field(sample)
 """
 p = [25,25]
-r = [20]
+r = [10]
+#r = [10,20,30,40,50,60,70,80,90,100]
 for i in r:
     c1 = charge_circle(30*i,p,i)
     c1.add_circle_field(sample)
+    print(i/100,end="\r")
 #print(d)
 sample.hmap_f()
