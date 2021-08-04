@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import numba
 from numba import jit, cuda
 class vector2:
     def __init__(self,x,y):
@@ -17,8 +18,8 @@ def distance(a,b):
     for i in range(2):
         dist2 += (a[i] - b[i])**2
     
-    return dist2**0.5
-
+    return np.array([dist2**0.5])
+    
 def draw_line(st,en,tol = 0.6):
     x0 = st[0]
     y0 = st[1]
@@ -66,7 +67,6 @@ def draw_line(st,en,tol = 0.6):
         
         return path
 
-@jit(parallel=True)
 def draw_circle(pt, rad,tol=1, en=1,st=0):
     if rad==0:
         return pt

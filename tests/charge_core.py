@@ -1,9 +1,24 @@
 import numpy as np
-from numba import jit
+import numba
+from numba import cuda
 
 from vectors import*
 
-
+@cuda.jit
+def add_field(r,q,space):
+    tx = cuda.threadIdx.x
+    ty = cuda.threadIdx.y
+    bw = cuda.blockDim.x
+    pos = int(tx + ty*bw)
+    dist2 = 0.0
+    for i in range(2):
+        dist2 += (r[i] - (tx*i+ty*(1-i)))**2
+    dist2 = dist2**0.5
+    if pos < space.size:
+        if dist2 == 0:
+            space[tx,ty] += 0.0
+        else:
+            space[tx,ty] += 1 * q /(dist2)**2
 class charge:
     def __init__(self,q,r,v):
         self.charge = q
@@ -58,8 +73,7 @@ class charge_circle:
         self.velocity = V
         self.rotate = T
         self.path = draw_circle(pt,r,en=en_,st=st_)
-
     def add_circle_field(self,space):
-        for i in self.path:
+        for i in prange(self.path):
             q_c = charge(self.charge,i,self.velocity)
             q_c.add_field(space)

@@ -4,6 +4,7 @@ import multiprocessing as mp
 
 sp = [50,50]
 sample = E_field(sp)
+sample2 = np.zeros((50,50),dtype=float)
 """
 r1 = [20,30]
 r2 = [30,20]
@@ -70,7 +71,7 @@ for i in range(2):
     l2.add_line_field(sample)
     l3.add_line_field(sample)
     l4.add_line_field(sample)
-"""
+
 p = [25,25]
 r = [10]
 #r = [10,20,30,40,50,60,70,80,90,100]
@@ -79,4 +80,11 @@ for i in range(4):
     c1.add_circle_field(sample)
     print(i/100,end="\r")
 #print(d)
+"""
+x = [5,10,15,20,25,30,35,40]
+y = [5,10,15,20,25,30,35,40]
+threadsperblock = 4
+blockspergrid = int(50*50/4)
+#print(sample2[6][6])
+add_field[threadsperblock,blockspergrid]([5,5],10,sample2)
 sample.hmap_f()
